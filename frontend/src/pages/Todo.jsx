@@ -13,6 +13,7 @@ function Todo() {
   const todoState = useSelector((state) => state.todo.arrTodo);
   const [todos, setTodos] = useState([]);
   const {dayId} = useParams();
+  const monthId = useSelector((state) => state.month.monthId)
   console.log("DayId in Todopage -> ",dayId);
   
   // const fetchTodo = async () => {
@@ -65,7 +66,7 @@ function Todo() {
         <button 
             type="submit" 
             className="mt-4 rounded-lg px-3 py-1 bg-blue-600 text-white shrink-0 w-[30%] mx-auto"
-            onClick={() => {navigate('/')}}
+            onClick={() => {navigate(`/month/${monthId}`)}}
             >
                 Back
         </button>
