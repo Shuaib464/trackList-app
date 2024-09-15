@@ -2,17 +2,22 @@ const Month = require('../models/month.model')
 const Day = require('../models/day.model')
 
 const date = new Date();
-const calculateDaysOfMonth = () => {
-    let year = date.getFullYear()
-    let month = date.getMonth()
-    // create a date object for the first day of the next month
-    let nextMonth = new Date(year, month + 1, 1);
-    // subtract one day to get the last day of the current month
-    let lastDayOfCurrentMonth = new Date(nextMonth - 1);
-    // get the total no of days
-    let totalDays = lastDayOfCurrentMonth.getDate();
-    return totalDays;
-}
+// // let year = date.getFullYear()
+// // let month = date.getMonth()
+// const calculateDaysOfMonth = (month=date.getMonth(), year=date.getFullYear()) => {
+//     // create a date object for the first day of the next month
+//     let nextMonth = new Date(year, month + 1, 1);
+//     // subtract one day to get the last day of the current month
+//     let lastDayOfCurrentMonth = new Date(nextMonth - 1);
+//     // get the total no of days
+//     let totalDays = lastDayOfCurrentMonth.getDate();
+//     return totalDays;
+// }
+function calculateDaysOfMonth(month = date.getMonth(), year = date.getFullYear()) {
+    month++;
+    return new Date(year, month, 0).getDate();
+  }
+  
 
 const createDaysObj = () => {
     let days = [];
