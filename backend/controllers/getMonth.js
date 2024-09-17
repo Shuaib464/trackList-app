@@ -106,7 +106,7 @@ exports.getMonthByDate = async(req, res) => {
         console.log('month [getMonthByDate] -: ', month)
         // check current month exist in DB ?
         const monthPresent = await Month.findOne({month:month, year: year}).populate('days')
-        console.log("month fetched response -:: ",monthPresent);
+        // console.log("month fetched response -:: ",monthPresent);
         
         // if month exists
         if(monthPresent){
