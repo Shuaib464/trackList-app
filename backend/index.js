@@ -9,7 +9,7 @@ require('dotenv').config()
 
 // configure cors
 const corsOptions = {
-    origin: 'https://track-list-frontend.vercel.app/',
+    origin: 'https://track-list-frontend.vercel.app',
     optionsSuccessStatus: 200
 };
 
