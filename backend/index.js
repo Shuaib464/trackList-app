@@ -9,11 +9,11 @@ require('dotenv').config()
 
 // configure cors
 const corsOptions = {
-    origin: 'https://track-list-frontend.vercel.app/',
+    origin: 'https://tracklist-frontend.onrender.com',
     optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
 
 // define port no for server
 const PORT = process.env.PORT || 4000;
