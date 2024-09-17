@@ -4,7 +4,7 @@ import axios from 'axios';
 // fetch month and days
 export const fetchMonth = createAsyncThunk('month/fetchMonth', async () => {
     console.log('In fetch month slice func...')
-    let response = await axios.get('/api/v1/getMonth');
+    let response = await axios.get('https://tracklist-backend.onrender.com/api/v1/getMonth');
     console.log("fetchMonth (Month_slice) ",response.data.data);
     
     return response.data.data;
