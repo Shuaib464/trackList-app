@@ -25,10 +25,25 @@ exports.updateTodo = async (req, res) => {
             )
         }
         // if TODO completed then create todo entry in completedTodos in Day_Model
-        if(updatedTodo.completed) {
+        if(dayId && updatedTodo.completed) {
             const updatedDay = await Day.findByIdAndUpdate(
                                                         {_id: dayId},
                                                         { $push: { completedTodos: updatedTodo._id}},
+                                                        {new: true}
+                                                    )
+            if(!updatedDay) {
+                return response.status(402).json({
+                    success: false,
+                    message: 'Unable to create entry of todo inside completedTodos of Day ',
+                    data: updatedTodo
+                })
+            }
+        }
+        // if todo became uncompleted then remove entry from completedTodos
+        if(!dayId && !updatedTodo.completed) {
+            const updatedDay = await Day.findByIdAndUpdate(
+                                                        {_id: dayId},
+                                                        { $pull: { completedTodos: updatedTodo._id}},
                                                         {new: true}
                                                     )
             if(!updatedDay) {
