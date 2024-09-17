@@ -18,7 +18,7 @@ export const fetchMonthByDate = createAsyncThunk('month/fetchMonthByDate', async
         month: month,
         year: year,
     }
-    let response = await axios.get('/api/v1/getMonthByDate', {
+    let response = await axios.get(`${url}/api/v1/getMonthByDate`, {
                                                 params: params
                                             });
     console.log("fetchMonth (Month_slice) ",response.data.data);

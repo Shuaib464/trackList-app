@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+const url = 'https://tracklist-backend.onrender.com'
 
 export const fetchTodos = createAsyncThunk('todo/fetchTodos', async (dayId) => {
     console.log("In fetchTodos func of TodoSlice...")
-    let response = await axios.get(`/api/v1/getTodosByDay/${dayId}`);
+    let response = await axios.get(`${url}/api/v1/getTodosByDay/${dayId}`);
     console.log("fetch todos [TODO_SLICE] -> ",response.data.data[0]);
     
     return response.data.data[0];
@@ -11,8 +12,8 @@ export const fetchTodos = createAsyncThunk('todo/fetchTodos', async (dayId) => {
 
 export const createTodo = createAsyncThunk('todo/createTodo', async ({title, dayId}) => {
     try {
-        const url = '/api/v1/createTodo';
-        const response = await axios.post(url, {title,dayId})
+        const apiUrl = `${url}/api/v1/createTodo`;
+        const response = await axios.post(apiUrl, {title,dayId})
         console.log("createTodo [TODO_SLICE]-> ",response.data);
         return response.data;
     } catch (error) {
@@ -23,11 +24,11 @@ export const createTodo = createAsyncThunk('todo/createTodo', async ({title, day
 
 export const updateTodo = createAsyncThunk('todo/updateTodo', async ({todoId, title, completed, dayId}) => {
     try {
-        const url = `/api/v1/updateTodo/${todoId}`
+        const apiUrl = `${url}/api/v1/updateTodo/${todoId}`
         console.log("todo Title [updateTodo TODO_SLICE] -> ", title);
         
         const updatedTodoAndDayId = {title, completed, dayId} 
-        const response = await axios.put(url, updatedTodoAndDayId);
+        const response = await axios.put(apiUrl, updatedTodoAndDayId);
         console.log("New Todo -: ",response.data);
         return response.data;        
     } catch (error) {
@@ -40,8 +41,8 @@ export const deleteTodo = createAsyncThunk('todo/deleteTodo', async ({todoId, da
     try {
         console.log('delete todoID [deleteTodo] -> ', todoId);
         
-        const url = `/api/v1/deleteTodo/${todoId}`
-        const response = await axios.delete(url, {data: {dayId: dayId}});
+        const apiUrl = `${url}/api/v1/deleteTodo/${todoId}`
+        const response = await axios.delete(apiUrl, {data: {dayId: dayId}});
         console.log('delete todo {deleteTodo} [TODO_SLICE] ->> ', response.data.data);
         return response.data;
     } catch (error) {
