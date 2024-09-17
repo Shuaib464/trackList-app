@@ -40,7 +40,7 @@ exports.updateTodo = async (req, res) => {
             }
         }
         // if todo became uncompleted then remove entry from completedTodos
-        if(!dayId && !updatedTodo.completed) {
+        if(dayId && !updatedTodo.completed) {
             const updatedDay = await Day.findByIdAndUpdate(
                                                         {_id: dayId},
                                                         { $pull: { completedTodos: updatedTodo._id}},
