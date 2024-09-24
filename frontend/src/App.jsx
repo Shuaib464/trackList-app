@@ -7,8 +7,10 @@ import { fetchMonth } from './store/features/monthSlice'
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchMonth())
-    console.log('Fetching month...')
+    ;(() => {
+        dispatch(fetchMonth())
+        console.log('Fetching month...')
+    })()
 }, [])
  return(
   <div>
